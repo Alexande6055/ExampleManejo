@@ -10,15 +10,14 @@
 <body>
     <div class="calculator-container">
         <div class="calculator">
-            <!-- Header -->
-            <div class="header">
+            <!-- Header -->            <div class="header">
                 <h1><i class="fas fa-calculator"></i> Calculadora Profesional</h1>
                 <div class="mode-toggle">
                     <button id="basicMode" class="mode-btn active">Básica</button>
                     <button id="scientificMode" class="mode-btn">Científica</button>
                     <button id="programmerMode" class="mode-btn">Programador</button>
                 </div>
-            </div>            <!-- Display -->
+            </div><!-- Display -->
             <div class="display-container">
                 <div class="history" id="history"></div>
                 <div class="current-display" id="currentDisplay">0</div>
@@ -159,12 +158,19 @@
             </div>
 
             <!-- History Panel -->
-            <div class="history-panel" id="historyPanel">
-                <div class="history-header">
+            <div class="history-panel" id="historyPanel">                <div class="history-header">
                     <h3><i class="fas fa-history"></i> Historial</h3>
-                    <button onclick="clearHistory()" class="clear-history-btn">
-                        <i class="fas fa-trash"></i>
-                    </button>
+                    <div class="history-actions">
+                        <button onclick="exportHistory('csv')" class="history-btn" title="Exportar a CSV">
+                            <i class="fas fa-file-csv"></i>
+                        </button>
+                        <button onclick="exportHistory('txt')" class="history-btn" title="Exportar a TXT">
+                            <i class="fas fa-file-text"></i>
+                        </button>
+                        <button onclick="clearHistory()" class="history-btn">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
                 </div>
                 <div class="history-list" id="historyList">
                     <p class="no-history">No hay operaciones en el historial</p>

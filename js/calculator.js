@@ -10,6 +10,7 @@ let operator = null;
 let waitingForOperand = false;
 let calculation = null;
 let shouldResetDisplay = false;
+let operationHistory = [];
 
 // Elementos del DOM
 const display = document.getElementById('currentDisplay');
@@ -279,6 +280,54 @@ function updateDisplay() {
 function updateHistory(text) {
     const historyElement = document.getElementById('history');
     historyElement.textContent = text;
+    
+    // Si hay una operación completada, guardarla en el historial
+    if (text.includes('=')) {
+        const operation = {
+            expression: text.split('=')[0].trim(),
+            result: text.split('=')[1].trim(),
+            timestamp: new Date().toLocaleString()
+        };
+        operationHistory.push(operation);
+    }
+}
+
+// Función para exportar el historial
+function exportHistory(format = 'csv') {
+    if (operationHistory.length === 0) {
+        alert('No hay operaciones en el historial para exportar.');
+        return;
+    }
+
+    let content = '';
+    let filename = `calculadora_historial_${new Date().toISOString().split('T')[0]}`;
+
+    if (format === 'csv') {
+        content = 'Fecha,Operación,Resultado\n';
+        operationHistory.forEach(op => {
+            content += `"${op.timestamp}","${op.expression}","${op.result}"\n`;
+        });
+        filename += '.csv';
+    } else {
+        content = 'Historial de Operaciones\n';
+        content += '======================\n\n';
+        operationHistory.forEach(op => {
+            content += `Fecha: ${op.timestamp}\n`;
+            content += `Operación: ${op.expression}\n`;
+            content += `Resultado: ${op.result}\n`;
+            content += '----------------------\n';
+        });
+        filename += '.txt';
+    }
+
+    const blob = new Blob([content], { type: format === 'csv' ? 'text/csv;charset=utf-8' : 'text/plain;charset=utf-8' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = filename;
+    link.style.display = 'none';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
 }
 
 // Obtener símbolo del operador
