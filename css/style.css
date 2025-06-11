@@ -175,20 +175,48 @@ body {
     color: #f39c12;
     font-size: 14px;
     font-weight: bold;
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: var(--transition);
 }
 
-/* Controles de memoria */
+.memory-indicator:hover {
+    background: rgba(243, 156, 18, 0.2);
+}
+
+/* Menú de memoria */
 .memory-controls {
     display: flex;
     gap: 5px;
     padding: 15px 20px;
-    background: rgba(0, 0, 0, 0.1);
+    background: rgba(0, 0, 0, 0.15);
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .mem-btn {
     flex: 1;
-    padding: 8px 5px;
+    padding: 10px 5px;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    letter-spacing: 0.5px;
+}
+
+.memory-menu.show {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.mem-btn {
+    padding: 8px 15px;
     border: none;
     border-radius: 8px;
     background: #95a5a6;
@@ -197,15 +225,54 @@ body {
     font-weight: bold;
     cursor: pointer;
     transition: var(--transition);
+    width: 100%;
+    text-align: left;
 }
 
 .mem-btn:hover {
-    background: #7f8c8d;
-    transform: translateY(-1px);
+    transform: var(--hover-transform);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 .mem-btn:active {
-    transform: translateY(0);
+    transform: translateY(1px);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Colores específicos para cada botón de memoria */
+.mem-btn:nth-child(1) { /* MC */
+    background: #e74c3c;
+}
+.mem-btn:nth-child(1):hover {
+    background: #c0392b;
+}
+
+.mem-btn:nth-child(2) { /* MR */
+    background: #27ae60;
+}
+.mem-btn:nth-child(2):hover {
+    background: #219a52;
+}
+
+.mem-btn:nth-child(3) { /* M+ */
+    background: #3498db;
+}
+.mem-btn:nth-child(3):hover {
+    background: #2980b9;
+}
+
+.mem-btn:nth-child(4) { /* M- */
+    background: #9b59b6;
+}
+.mem-btn:nth-child(4):hover {
+    background: #8e44ad;
+}
+
+.mem-btn:nth-child(5) { /* MS */
+    background: #f1c40f;
+}
+.mem-btn:nth-child(5):hover {
+    background: #d4ac0d;
 }
 
 /* Modos de calculadora */
