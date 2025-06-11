@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Graficador de Funciones</title>
+    <!-- KaTeX para mostrar fórmulas matemáticas -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body);"></script>
+    <!-- math.js para cálculo simbólico -->
+    <script src="https://cdn.jsdelivr.net/npm/mathjs@11.11.2/lib/browser/math.js"></script>
+</head>
+
+<body>
+
+    <!-- Formulario para ingresar la función y los límites -->
+    <div class="function-input">
+        <h4>Ingresar Función y Límites</h4>
+        <label>f(x): <input type="text" id="input-funcion" value="x^2 - 1"></label>
+        <label>Tipo:
+            <select id="input-tipo">
+                <option value="definite" selected>Definida</option>
+                <option value="indefinite">Indefinida</option>
+            </select>
+        </label>
+        <label>Límite Inferior: <input type="number" id="input-limite-inferior" value="-2"></label>
+        <label>Límite Superior: <input type="number" id="input-limite-superior" value="2"></label>
+        <button onclick="graficarDesdeFormulario()">Graficar</button>
+    </div>
+
+    <!-- Bloque HTML para la gráfica -->
+    <div id="plot-container" class="plot-container">
+        <h4>Visualización de la Función</h4>
+        <div class="plot-wrapper">
+            <canvas id="function-plot" height="400" width="700"></canvas>
+        </div>
+        <div id="plot-legend" class="plot-legend">
+            <div class="legend-item">
+                <div class="legend-color" style="background-color: rgba(75, 192, 192, 0.6);"></div>
+                <div class="legend-label">Función f(x)</div>
+            </div>
+            <div class="legend-item definite-only" style="display: flex;">
+                <div class="legend-color" style="background-color: rgba(75, 192, 192, 0.3);"></div>
+                <div class="legend-label">Área Bajo la Curva</div>
+            </div>
+        </div>
+    </div>
+    <!-- Apartado de resolución de integrales -->
+    <div id="integral-solution" class="integral-solution">
+        <h4>Resolución de la Integral</h4>
+        <div id="integral-procedure"></div>
+    </div>
+    <!-- Incluye Chart.js (CDN) -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Estilos -->
+    <!-- Script para graficar una función -->
+
+
+
+</body>
+
+</html>
